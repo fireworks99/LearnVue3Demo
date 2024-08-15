@@ -10,25 +10,33 @@ jobs:
     runs-on: ubuntu-latest
 
     steps:
-      - name: Checkout code
+      - name: Checkout
         uses: actions/checkout@v3
+        with:
+          fetch-depth: 0
+          # 如果你文档需要 Git 子模块，取消注释下一行
+          # submodules: true
 
-      - name: Set up Node.js
+      - name: 安装 pnpm
+        uses: pnpm/action-setup@v2
+        with:
+          run_install: true
+          version: 8
+
+
+      - name: 设置 Node.js
         uses: actions/setup-node@v3
         with:
-          node-version: '18'
-          cache: 'pnpm'
+          node-version: 20
+          cache: pnpm
 
-      - name: Install pnpm
-        run: npm install -g pnpm
-
-      - name: Install dependencies
+      - name: 安装依赖
         run: pnpm install
 
-      - name: Build project
+      - name: 打包项目
         run: pnpm run build
 
-      - name: Deploy to GitHub Pages
+      - name: 部署项目到GitHub Pages
         run: pnpm run deploy
 
       - name: Clean up gh-pages branch
