@@ -36,11 +36,8 @@ jobs:
       - name: 打包项目
         run: pnpm run build
 
-      - name: 部署项目到GitHub Pages
-        run: pnpm run deploy
-
-      - name: Clean up gh-pages branch
-        run: gh-pages-clean
-
-      - name: Push changes to gh-pages branch
-        run: gh-pages -d dist
+      - name: 部署到gh-pages分支
+        uses: JamesIves/github-pages-deploy-action@v4
+        with:
+          folder: dist
+          branch: gh-pages
