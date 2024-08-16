@@ -9,6 +9,7 @@
       <RouterLink to="/grid">Grid</RouterLink>
       <RouterLink to="/todo">Todo</RouterLink>
       <RouterLink to="/curd">CURD</RouterLink>
+      <RouterLink to="/drag">Drag</RouterLink>
     </div>
     <div class="app_main flex-center">
       <RouterView />
