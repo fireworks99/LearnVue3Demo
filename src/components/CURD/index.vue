@@ -43,7 +43,7 @@ function updateName() {
 
 function deleteName() {
   if (selectIndex.value !== -1) {
-    names.splice(selectIndex, 1);
+    names.splice(selectIndex.value, 1);
   }
 }
 
