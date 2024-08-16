@@ -4,6 +4,8 @@
 
 <template>
   <div class="home_content">
+    <br />
+    <br />
     <h2 style="text-align: center;">前端项目部署到Github，通过Github Actions部署到gh-pages并通过Github Pages访问</h2>
     <br />
     <h3 id='1-github'>1. Github：</h3>
@@ -123,7 +125,6 @@ git push origin master
       width: fit-content;
       min-width: 100%;
       line-height: 1.5;
-      font-size: 1rem;
       color : #0e0e0e;
       padding: 0px 24px;
       transition: color 0.5s;
