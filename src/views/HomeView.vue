@@ -23,7 +23,7 @@
     <h3 id='2-本地项目'>2. 本地项目：</h3>
     <ol>
       <li>
-        <p>修改vite配置里的base为仓库名（base: &#39;/LearnVue3Demo/&#39;）</p>
+        <p>修改vite配置里的base为仓库名（base: &#39;/LearnVue3Demo/&#39;）；如果是webpack则修改vue.config.js里的publicPath为仓库名</p>
       </li>
       <li>
         <p>创建工作流：在根目录下创建 <code>.github/workflows/deploy.yml</code></p>
@@ -69,6 +69,50 @@ jobs:
 
       - name: 打包项目
         run: pnpm run build
+
+      - name: 部署到gh-pages分支
+        uses: JamesIves/github-pages-deploy-action@v4
+        with:
+          folder: dist
+          branch: gh-pages
+        </code>
+      </pre>
+      <p>如果是vue2项目，那么流程可以这么写</p>
+      <pre>
+        <code class='language-yaml' lang='yaml'>
+name: Deploy to GitHub Pages
+
+on:
+  push:
+    branches:
+      - master
+
+permissions:
+  contents: write
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v3
+        with:
+          fetch-depth: 0
+          # 如果你文档需要 Git 子模块，取消注释下一行
+          # submodules: true
+
+      - name: 设置 Node.js
+        uses: actions/setup-node@v3
+        with:
+          node-version: 14
+          cache: npm
+
+      - name: 安装依赖
+        run: npm install
+
+      - name: 打包项目
+        run: npm run build
 
       - name: 部署到gh-pages分支
         uses: JamesIves/github-pages-deploy-action@v4
